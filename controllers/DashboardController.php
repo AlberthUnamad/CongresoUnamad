@@ -7,13 +7,14 @@ use Model\Registro;
 use Model\Usuario;
 use MVC\Router;
 
-class DashboardController {
-
-    public static function index(Router $router) {
+class DashboardController
+{
+    public static function index(Router $router)
+    {
 
         // Obtener ultimos registros
         $registros = Registro::get(5);
-        foreach($registros as $registro) {
+        foreach ($registros as $registro) {
             $registro->usuario = $registro->getUsuario();
         }
 

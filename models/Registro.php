@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace Model;
 
-class Registro extends ActiveRecord {
+class Registro extends ActiveRecord
+{
     protected static $tabla = 'registros';
     protected static $columnasDB = ['id', 'paquete_id', 'pago_id', 'token', 'usuario_id', 'regalo_id'];
 
@@ -26,7 +27,8 @@ class Registro extends ActiveRecord {
         $this->regalo_id = $args['regalo_id'] ?? 1;
     }
 
-    public function getUsuario() {
+    public function getUsuario()
+    {
         return Usuario::find($this->usuario_id);
     }
 
