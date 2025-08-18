@@ -1,0 +1,13 @@
+@use 'base/mixins' as m;
+
+.auth {
+    
+    @include m.contenedor-sp;
+    &__encabezado {
+        @include m.nombre-pagina;
+    }
+}
+
+.auth__texto{
+    font-size: 20px;
+}

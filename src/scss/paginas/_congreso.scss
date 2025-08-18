@@ -1,0 +1,19 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.congreso {
+    padding: 50px 0;
+
+    &__grid {
+        @include m.contenedor;
+        @include m.grid(1, 30px);
+        @include m.tablet {
+            @include m.grid(2, 50px);
+            align-items: center;
+        }
+    }
+
+    &__texto {
+        line-height: 2;
+    }
+}

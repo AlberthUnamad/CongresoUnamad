@@ -1,0 +1,57 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.ponentes {
+    padding: 50px 0;
+    
+    &__grid {
+        @include m.contenedor;
+        @include m.grid(1, 50px);
+        @include m.tablet {
+            @include m.grid(2, 50px);
+        }
+        @include m.xl_desktop {
+            @include m.grid(3, 50px);
+        }
+    }
+}
+
+.ponente {
+    @include m.card;
+    background-position: center top;
+    background-size: 350px;
+    background-repeat: no-repeat;
+
+    @for $i from 1 through 4 {
+        &:nth-child(4n + #{$i}) {
+            background-image: image-set(
+                url('../img/bg_#{$i}.avif') 1x,
+                url('../img/bg_#{$i}.webp') 1x,
+                url('../img/bg_#{$i}.png') 1x
+            );
+        }
+    }
+
+    &__imagen {
+        min-width: 350px;
+        @include m.tablet {
+            min-width: unset;
+        }
+    }
+    &__ubicacion {
+        color: v.$gris;
+        margin: 10px 0;
+        font-size: 20px;
+        line-height: 1.5;
+    }
+    &__listado-skills {
+        @include m.tags;
+    }
+}
+
+.ponente-sociales {
+    @include m.menu-social(v.$negro, 30px);
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
