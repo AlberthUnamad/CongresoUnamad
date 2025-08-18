@@ -1,7 +1,7 @@
 <h2 align="center"><?php echo $titulo; ?></h2>
 
 <div class="panel__contenedor">
-    <?php if(!empty($registros)) { ?>
+    <?php if (!empty($registros)) { ?>
         <table class="table">
             <thead class="table__thead">
                 <tr>
@@ -12,7 +12,7 @@
             </thead>
 
             <tbody class="table__tbody">
-                <?php foreach($registros as $registro) { ?>
+                <?php foreach ($registros as $registro) { ?>
                     <tr class="table__tr">
                     <td class="table__td">
                             <?php echo $registro->usuario->nombre . " " . $registro->usuario->apellido; ?>
@@ -33,6 +33,6 @@
     <?php } ?>
 </div>
 
-<?php 
+<?php
     echo $paginacion;
 ?>

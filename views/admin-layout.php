@@ -11,18 +11,18 @@
     <link rel="stylesheet" href="/build/css/app.css">
 </head>
 <body class="panel">
-        <?php 
+        <?php
             include_once __DIR__ .'/templates/admin-encabezado.php';
-        ?>
+    ?>
         <div class="panel__grid">
             <?php
-                include_once __DIR__ .'/templates/admin-sidebar.php';  
-            ?>
+            include_once __DIR__ .'/templates/admin-sidebar.php';
+    ?>
 
             <main class="panel__contenido">
-                <?php 
-                    echo $contenido; 
-                ?> 
+                <?php
+            echo $contenido;
+    ?> 
             </main>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

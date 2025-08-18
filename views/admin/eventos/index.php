@@ -8,7 +8,7 @@
 </div>
 
 <div class="panel__contenedor">
-    <?php if(!empty($eventos)) { ?>
+    <?php if (!empty($eventos)) { ?>
         <table class="table">
             <thead class="table__thead">
                 <tr>
@@ -21,7 +21,7 @@
             </thead>
 
             <tbody class="table__tbody">
-                <?php foreach($eventos as $evento) { ?>
+                <?php foreach ($eventos as $evento) { ?>
                     <tr class="table__tr">
                         <td class="table__td">
                             <?php echo $evento->nombre; ?>
@@ -58,6 +58,6 @@
     <?php } ?>
 </div>
 
-<?php 
+<?php
     echo $paginacion;
 ?>
