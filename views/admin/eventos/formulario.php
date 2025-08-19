@@ -32,7 +32,7 @@
             name="categoria_id"
         >
             <option value="">- Seleccionar -</option>
-            <?php foreach($categorias as $categoria) { ?>
+            <?php foreach ($categorias as $categoria) { ?>
                 <option <?php echo ($evento->categoria_id === $categoria->id) ? 'selected' : '' ?> value="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre; ?></option>
             <?php } ?>
         </select>
@@ -42,7 +42,7 @@
         <label for="categoria" class="formulario__label">Selecciona el día</label>
 
         <div class="formulario__radio">
-            <?php foreach($dias as $dia) { ?>
+            <?php foreach ($dias as $dia) { ?>
                 <div>
                     <label for="<?php echo strtolower($dia->nombre); ?>"><?php echo $dia->nombre; ?></label>
                     <input
@@ -63,7 +63,7 @@
         <label class="formulario__label">Seleccionar Hora</label>
 
         <ul id="horas" class="horas">
-            <?php foreach($horas as $hora) { ?>
+            <?php foreach ($horas as $hora) { ?>
                 <li data-hora-id="<?php echo $hora->id; ?>" class="horas__hora horas__hora--deshabilitada"><?php echo $hora->hora; ?></li>
             <?php } ?>
         </ul>

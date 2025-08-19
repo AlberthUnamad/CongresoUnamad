@@ -7,14 +7,14 @@
         <p class="eventos-registro__fecha">Jueves 7 de Diciembre</p>
 
         <div class="eventos-registro__grid">
-            <?php foreach($eventos['conferencias_j'] as $evento ) { ?>
+            <?php foreach ($eventos['conferencias_j'] as $evento) { ?>
                 <?php include __DIR__ . '/evento.php'; ?>
             <?php } ?>
         </div>
 
         <p class="eventos-registro__fecha">Sábado 9 de Diciembre</p>
         <div class="eventos-registro__grid">
-            <?php foreach($eventos['conferencias_s'] as $evento ) { ?>
+            <?php foreach ($eventos['conferencias_s'] as $evento) { ?>
                 <?php include __DIR__ . '/evento.php'; ?>
             <?php } ?>
         </div>
@@ -23,14 +23,14 @@
         <p class="eventos-registro__fecha">Jueves 7 de Diciembre</p>
 
         <div class="eventos-registro__grid eventos--talleres">
-            <?php foreach($eventos['talleres_j'] as $evento ) { ?>
+            <?php foreach ($eventos['talleres_j'] as $evento) { ?>
                 <?php include __DIR__ . '/evento.php'; ?>
             <?php } ?>
         </div>
 
         <p class="eventos-registro__fecha">Sábado 9 de Diciembre</p>
         <div class="eventos-registro__grid eventos--talleres">
-            <?php foreach($eventos['talleres_s'] as $evento ) { ?>
+            <?php foreach ($eventos['talleres_s'] as $evento) { ?>
                 <?php include __DIR__ . '/evento.php'; ?>
             <?php } ?>
         </div>
@@ -46,7 +46,7 @@
             <label for="regalo" class="registro__label">Selecciona un regalo</label>
             <select id="regalo" class="registro__select">
                 <option value="">-- Selecciona tu regalo --</option>
-                <?php foreach($regalos as $regalo) { ?>
+                <?php foreach ($regalos as $regalo) { ?>
                     <option value="<?php echo $regalo->id; ?>"><?php echo $regalo->nombre; ?></option>
                 <?php } ?>
             </select>

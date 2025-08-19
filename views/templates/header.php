@@ -2,7 +2,7 @@
     <div class="encabezado__contenedor">
         <nav class="encabezado__navegacion">
 
-        <?php if(is_auth()) { ?>
+        <?php if (is_auth()) { ?>
                 <a href="<?php echo is_admin() ? '/admin/dashboard' : '/finalizar-registro'; ?>" class="encabezado__enlace encabezado__boton">Administrar</a>
                 <form method="POST" action="/logout" class="encabezado__form">
                     <input type="submit" value="Cerrar Sesión" class="encabezado__submit encabezado__boton">

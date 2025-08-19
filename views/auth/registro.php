@@ -2,7 +2,7 @@
     <h2 class="auth__encabezado"><?php echo $titulo; ?></h2>
     <p class="auth__texto">Registrate en Congreso Unamad</p>
 
-    <?php 
+    <?php
         require_once __DIR__ . '/../templates/alertas.php';
     ?>
 

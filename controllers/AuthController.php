@@ -6,36 +6,38 @@ use Classes\Email;
 use Model\Usuario;
 use MVC\Router;
 
-class AuthController {
-    public static function login(Router $router) {
+class AuthController
+{
+    public static function login(Router $router)
+    {
 
         $alertas = [];
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             $usuario = new Usuario($_POST);
-            
+
             $alertas = $usuario->validarLogin();
-            
-            if(empty($alertas)) {
+
+            if (empty($alertas)) {
                 // Verificar quel el usuario exista
                 $usuario = Usuario::where('email', $usuario->email);
-                if(!$usuario || !$usuario->confirmado ) {
+                if (!$usuario || !$usuario->confirmado) {
                     Usuario::setAlerta('error', 'El Usuario No Existe o no esta confirmado');
                 } else {
                     // El Usuario existe
-                    if( password_verify($_POST['password'], $usuario->password) ) {
-                        
+                    if (password_verify($_POST['password'], $usuario->password)) {
+
                         // Iniciar la sesión
-                        session_start();    
+                        session_start();
                         $_SESSION['id'] = $usuario->id;
                         $_SESSION['nombre'] = $usuario->nombre;
                         $_SESSION['apellido'] = $usuario->apellido;
                         $_SESSION['email'] = $usuario->email;
                         $_SESSION['admin'] = $usuario->admin ?? null;
-                        
-                        // Redirección 
-                        if($usuario->admin) {
+
+                        // Redirección
+                        if ($usuario->admin) {
                             header('Location: /admin/dashboard');
                         } else {
                             header('Location: /finalizar-registro');
@@ -49,16 +51,17 @@ class AuthController {
         }
 
         $alertas = Usuario::getAlertas();
-        
-        // Render a la vista 
+
+        // Render a la vista
         $router->render('auth/login', [
             'titulo' => 'Iniciar Sesión',
             'alertas' => $alertas
         ]);
     }
 
-    public static function logout() {
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    public static function logout()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $_SESSION = [];
             header('Location: /');
@@ -66,20 +69,21 @@ class AuthController {
 
     }
 
-    public static function registro(Router $router) {
+    public static function registro(Router $router)
+    {
         $alertas = [];
-        $usuario = new Usuario;
+        $usuario = new Usuario();
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $usuario->sincronizar($_POST);
-            
+
             $alertas = $usuario->validar_cuenta();
 
-            if(empty($alertas)) {
+            if (empty($alertas)) {
                 $existeUsuario = Usuario::where('email', $usuario->email);
 
-                if($existeUsuario) {
+                if ($existeUsuario) {
                     Usuario::setAlerta('error', 'El Usuario ya esta registrado');
                     $alertas = Usuario::getAlertas();
                 } else {
@@ -99,7 +103,7 @@ class AuthController {
                     $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
                     $email->enviarConfirmacion();
 
-                    if($resultado) {
+                    if ($resultado) {
                         header('Location: /mensaje');
                     }
                 }
@@ -109,23 +113,24 @@ class AuthController {
         // Render a la vista
         $router->render('auth/registro', [
             'titulo' => 'Crea tu cuenta en Congreso Unamad',
-            'usuario' => $usuario, 
+            'usuario' => $usuario,
             'alertas' => $alertas
         ]);
     }
 
-    public static function olvide(Router $router) {
+    public static function olvide(Router $router)
+    {
         $alertas = [];
-        
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuario = new Usuario($_POST);
             $alertas = $usuario->validarEmail();
 
-            if(empty($alertas)) {
+            if (empty($alertas)) {
                 // Buscar el usuario
                 $usuario = Usuario::where('email', $usuario->email);
 
-                if($usuario && $usuario->confirmado) {
+                if ($usuario && $usuario->confirmado) {
 
                     // Generar un nuevo token
                     $usuario->crearToken();
@@ -135,7 +140,7 @@ class AuthController {
                     $usuario->guardar();
 
                     // Enviar el email
-                    $email = new Email( $usuario->email, $usuario->nombre, $usuario->token );
+                    $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
                     $email->enviarInstrucciones();
 
 
@@ -144,7 +149,7 @@ class AuthController {
 
                     $alertas['exito'][] = 'Hemos enviado las instrucciones a tu email';
                 } else {
-            
+
                     // Usuario::setAlerta('error', 'El Usuario no existe o no esta confirmado');
 
                     $alertas['error'][] = 'El Usuario no existe o no esta confirmado';
@@ -159,24 +164,27 @@ class AuthController {
         ]);
     }
 
-    public static function reestablecer(Router $router) {
+    public static function reestablecer(Router $router)
+    {
 
         $token = s($_GET['token']);
 
         $token_valido = true;
 
-        if(!$token) header('Location: /');
+        if (!$token) {
+            header('Location: /');
+        }
 
         // Identificar el usuario con este token
         $usuario = Usuario::where('token', $token);
 
-        if(empty($usuario)) {
+        if (empty($usuario)) {
             Usuario::setAlerta('error', 'Token No Válido, intenta de nuevo');
             $token_valido = false;
         }
 
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Añadir el nuevo password
             $usuario->sincronizar($_POST);
@@ -184,7 +192,7 @@ class AuthController {
             // Validar el password
             $alertas = $usuario->validarPassword();
 
-            if(empty($alertas)) {
+            if (empty($alertas)) {
                 // Hashear el nuevo password
                 $usuario->hashPassword();
 
@@ -195,14 +203,14 @@ class AuthController {
                 $resultado = $usuario->guardar();
 
                 // Redireccionar
-                if($resultado) {
+                if ($resultado) {
                     header('Location: /login');
                 }
             }
         }
 
         $alertas = Usuario::getAlertas();
-        
+
         // Muestra la vista
         $router->render('auth/reestablecer', [
             'titulo' => 'Reestablecer Contraseña',
@@ -211,23 +219,27 @@ class AuthController {
         ]);
     }
 
-    public static function mensaje(Router $router) {
+    public static function mensaje(Router $router)
+    {
 
         $router->render('auth/mensaje', [
             'titulo' => 'Cuenta Creada Exitosamente'
         ]);
     }
 
-    public static function confirmar(Router $router) {
-        
+    public static function confirmar(Router $router)
+    {
+
         $token = s($_GET['token']);
 
-        if(!$token) header('Location: /');
+        if (!$token) {
+            header('Location: /');
+        }
 
         // Encontrar al usuario con este token
         $usuario = Usuario::where('token', $token);
 
-        if(empty($usuario)) {
+        if (empty($usuario)) {
             // No se encontró un usuario con ese token
             Usuario::setAlerta('error', 'Token No Válido, la cuenta no pudo ser confirmada');
         } else {
@@ -235,14 +247,14 @@ class AuthController {
             $usuario->confirmado = 1;
             $usuario->token = '';
             unset($usuario->password2);
-            
+
             // Guardar en la BD
             $usuario->guardar();
 
             Usuario::setAlerta('exito', 'Cuenta Comprobada Correctamente');
         }
 
-     
+
 
         $router->render('auth/confirmar', [
             'titulo' => 'Confirma tu cuenta Congreso Unamad',

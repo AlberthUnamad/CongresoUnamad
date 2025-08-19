@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace Model;
 
-class Ponente extends ActiveRecord {
+class Ponente extends ActiveRecord
+{
     protected static $tabla = 'ponentes';
     protected static $columnasDB = ['id', 'nombre', 'apellido', 'ciudad', 'pais', 'imagen', 'tags', 'redes'];
 
@@ -27,26 +28,27 @@ class Ponente extends ActiveRecord {
         $this->redes = $args['redes'] ?? '';
     }
 
-    public function validar() {
-        if(!$this->nombre) {
+    public function validar()
+    {
+        if (!$this->nombre) {
             self::$alertas['error'][] = 'El Nombre es Obligatorio';
         }
-        if(!$this->apellido) {
+        if (!$this->apellido) {
             self::$alertas['error'][] = 'El Apellido es Obligatorio';
         }
-        if(!$this->ciudad) {
+        if (!$this->ciudad) {
             self::$alertas['error'][] = 'El Campo Ciudad es Obligatorio';
         }
-        if(!$this->pais) {
+        if (!$this->pais) {
             self::$alertas['error'][] = 'El Campo País es Obligatorio';
         }
-        if(!$this->imagen) {
+        if (!$this->imagen) {
             self::$alertas['error'][] = 'La imagen es obligatoria';
         }
-        if(!$this->tags) {
+        if (!$this->tags) {
             self::$alertas['error'][] = 'El Campo áreas es obligatorio';
         }
-    
+
         return self::$alertas;
     }
 }

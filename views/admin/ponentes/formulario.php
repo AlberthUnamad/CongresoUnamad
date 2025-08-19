@@ -58,7 +58,7 @@
         >
     </div>
 
-    <?php if(isset($ponente->imagen_actual)) { ?>
+    <?php if (isset($ponente->imagen_actual)) { ?>
         <p class="formulario__texto">Imagen Actual:</p>
         <div class="formulario__imagen">
             <picture>
