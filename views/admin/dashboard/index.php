@@ -5,7 +5,7 @@
         <div class="bloque">
             <h3 class="bloque__encabezado">Últimos Registros</h3>
 
-            <?php foreach($registros as $registro) { ?>
+            <?php foreach ($registros as $registro) { ?>
                 <div class="bloque__contenido">
                     <p class="bloque__texto">
                         <?php echo $registro->usuario->nombre . " " . $registro->usuario->apellido; ?>
@@ -21,7 +21,7 @@
 
         <div class="bloque">
             <h3 class="bloque__encabezado">Eventos Con Menos Lugares Disponibles</h3>
-            <?php foreach($menos_disponibles as $evento) { ?>
+            <?php foreach ($menos_disponibles as $evento) { ?>
                 <div class="bloque__contenido">
                     <p class="bloque__texto">
                         <?php echo $evento->nombre . " - " . $evento->disponibles . ' Disponibles'; ?>
@@ -32,7 +32,7 @@
 
         <div class="bloque">
             <h3 class="bloque__encabezado">Eventos Con Más Lugares Disponibles</h3>
-            <?php foreach($mas_disponibles as $evento) { ?>
+            <?php foreach ($mas_disponibles as $evento) { ?>
                 <div class="bloque__contenido">
                     <p class="bloque__texto">
                         <?php echo $evento->nombre . " - " . $evento->disponibles . ' Disponibles'; ?>

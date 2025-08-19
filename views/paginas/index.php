@@ -1,5 +1,5 @@
 <?php
-    include_once __DIR__ . '/conferencias.php';
+include_once __DIR__ . '/conferencias.php';
 ?>
 
 <section class="resumen">
@@ -31,7 +31,7 @@
     <p class="ponentes__descripcion">Conoce a nuestros expertos de Desarrollo</p>
 
     <div class="ponentes__grid">
-        <?php foreach($ponentes as $ponente) { ?>
+        <?php foreach ($ponentes as $ponente) { ?>
             <div <?php aos_animacion(); ?> class="ponente">
                 <picture>
                     <source srcset="img/ponentesC/<?php echo $ponente->imagen; ?>.webp" type="image/webp">
@@ -50,40 +50,40 @@
 
                     <nav class="ponente-sociales">
                         <?php
-                            $redes =  json_decode( $ponente->redes );
-                        ?>
+                            $redes =  json_decode($ponente->redes);
+            ?>
                         
-                        <?php if(!empty($redes->facebook)) { ?>
+                        <?php if (!empty($redes->facebook)) { ?>
                             <a class="ponente-sociales__enlace" rel="noopener noreferrer" target="_blank" href="<?php echo $redes->facebook; ?>">
                                 <span class="ponente-sociales__ocultar">Facebook</span>
                             </a> 
                         <?php } ?>
 
-                        <?php if(!empty($redes->twitter)) { ?>
+                        <?php if (!empty($redes->twitter)) { ?>
                             <a class="ponente-sociales__enlace" rel="noopener noreferrer" target="_blank" href="<?php echo $redes->twitter; ?>">
                                 <span class="ponente-sociales__ocultar">Twitter</span>
                             </a> 
                         <?php } ?> 
 
-                        <?php if(!empty($redes->youtube)) { ?>
+                        <?php if (!empty($redes->youtube)) { ?>
                             <a class="ponente-sociales__enlace" rel="noopener noreferrer" target="_blank" href="<?php echo $redes->youtube; ?>">
                                 <span class="ponente-sociales__ocultar">YouTube</span>
                             </a> 
                         <?php } ?> 
 
-                        <?php if(!empty($redes->instagram)) { ?>
+                        <?php if (!empty($redes->instagram)) { ?>
                             <a class="ponente-sociales__enlace" rel="noopener noreferrer" target="_blank" href="<?php echo $redes->instagram; ?>">
                                 <span class="ponente-sociales__ocultar">Instagram</span>
                             </a> 
                         <?php } ?> 
 
-                        <?php if(!empty($redes->tiktok)) { ?>
+                        <?php if (!empty($redes->tiktok)) { ?>
                             <a class="ponente-sociales__enlace" rel="noopener noreferrer" target="_blank" href="<?php echo $redes->tiktok; ?>">
                                 <span class="ponente-sociales__ocultar">Tiktok</span>
                             </a> 
                         <?php } ?> 
 
-                        <?php if(!empty($redes->github)) { ?>
+                        <?php if (!empty($redes->github)) { ?>
                             <a class="ponente-sociales__enlace" rel="noopener noreferrer" target="_blank" href="<?php echo $redes->github; ?>">
                                 <span class="ponente-sociales__ocultar">Github</span>
                             </a>
@@ -91,10 +91,10 @@
                     </nav>
 
                     <ul class="ponente__listado-skills">
-                        <?php 
-                            $tags = explode(',', $ponente->tags);
-                            foreach($tags as $tag) { 
-                        ?>
+                        <?php
+                $tags = explode(',', $ponente->tags);
+            foreach ($tags as $tag) {
+                ?>
                             <li class="ponente__skill"><?php echo $tag; ?></li>
                         <?php } ?>
                     </ul>

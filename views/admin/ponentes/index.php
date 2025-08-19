@@ -8,7 +8,7 @@
 </div>
 
 <div class="panel__contenedor">
-    <?php if(!empty($ponentes)) { ?>
+    <?php if (!empty($ponentes)) { ?>
         <table class="table">
             <thead class="table__thead">
                 <tr>
@@ -19,7 +19,7 @@
             </thead>
 
             <tbody class="table__tbody">
-                <?php foreach($ponentes as $ponente) { ?>
+                <?php foreach ($ponentes as $ponente) { ?>
                     <tr class="table__tr">
                         <td class="table__td">
                             <?php echo $ponente->nombre . " " . $ponente->apellido; ?>
@@ -51,6 +51,6 @@
     <?php } ?>
 </div>
 
-<?php 
+<?php
     echo $paginacion;
 ?>

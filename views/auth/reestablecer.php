@@ -6,7 +6,7 @@
         require_once __DIR__ . '/../templates/alertas.php';
     ?>
 
-    <?php if($token_valido) { ?>
+    <?php if ($token_valido) { ?>
         <form method="POST" class="formulario">
             <div class="formulario__campo">
                 <label for="password" class="formulario__label">Nueva Contraseña</label>
