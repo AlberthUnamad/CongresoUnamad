@@ -20,7 +20,7 @@
                 </h1>
             </a>
 
-            <p class="encabezado__texto">Noviembre 14-17 -2023</p>
+            <p class="encabezado__texto">Noviembre 14-17 -2025</p>
             <p class="encabezado__texto">Modalidades:</p>
             <p class="encabezado__texto encabezado__texto--modalidad">En Línea - Presencial</p>
 

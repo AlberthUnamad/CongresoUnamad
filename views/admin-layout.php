@@ -26,6 +26,68 @@
             </main>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/build/js/main.min.js" defer></script>
+    
+<!-- Reproductor de música -->
+    <script>
+        const audio = document.getElementById('musica');
+        audio.volume = 0.5; // Ajusta el volumen al 50%
+        audio.play().catch(err => {
+            console.log("No se pudo reproducir la música:", err);
+        });
+    </script>    
+<div style="position:fixed; bottom:20px; right:20px; z-index:1000; text-align:center;">
+  <!-- Botón para mostrar / ocultar el reproductor -->
+  <button onclick="togglePlayer()" style="background:#fff; border:none; padding:10px 15px; border-radius:50px; box-shadow:0 0 10px rgba(0,0,0,0.2); cursor:pointer; font-size:18px;">
+    🎵 Música
+  </button>
+
+  <!-- Reproductor oculto inicialmente -->
+  <div id="playerContainer" style="display:none; margin-top:10px; background:#fff; padding:15px; border-radius:15px; box-shadow:0 0 10px rgba(0,0,0,0.2); width:250px;">
+    <p id="trackName" style="margin:0 0 10px; font-weight:bold;">Canción 1</p>
+    <audio id="musica" controls loop style="width:100%;">
+      <source src="/musica/fondo.mp3" type="audio/mpeg">
+    </audio>
+    <br>
+    <button onclick="prevSong()" style="margin:5px;">⏮️</button>
+    <button onclick="nextSong()" style="margin:5px;">⏭️</button>
+  </div>
+</div>
+
+<script>
+const tracks = [
+  { name: "MONTAGEM XONADA(MP3_320K)", src: "/musica/fondo.mp3" },
+  { name: "DIA DELÍCIA (Slowed)(MP3_160K)", src: "/musica/extra.mp3" }
+];
+
+let currentTrack = 0;
+const audio = document.getElementById('musica');
+const trackName = document.getElementById('trackName');
+
+// Cambiar canción
+function loadTrack(index) {
+  if (index < 0) index = tracks.length - 1;
+  if (index >= tracks.length) index = 0;
+  currentTrack = index;
+  audio.src = tracks[currentTrack].src;
+  trackName.textContent = tracks[currentTrack].name;
+  audio.play().catch(err => console.log("No se pudo reproducir:", err));
+}
+
+function prevSong() {
+  loadTrack(currentTrack - 1);
+}
+
+function nextSong() {
+  loadTrack(currentTrack + 1);
+}
+
+// Mostrar / ocultar reproductor
+function togglePlayer() {
+  const container = document.getElementById('playerContainer');
+  container.style.display = (container.style.display === "none") ? "block" : "none";
+}
+</script>
+
+        <script src="/build/js/main.min.js" defer></script>
 </body>
 </html>

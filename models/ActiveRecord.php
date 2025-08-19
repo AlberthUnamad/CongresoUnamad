@@ -83,14 +83,16 @@ class ActiveRecord {
 
     // Sincroniza BD con Objetos en memoria
     public function sincronizar($args = []) {
-    foreach($args as $key => $value) {
-        // Si existe en columnas de la BD o es una propiedad pública del modelo
-        if(in_array($key, static::$columnasDB) || property_exists($this, $key)) {
-            $this->$key = $value;
+    foreach ($args as $key => $value) {
+        if (in_array($key, static::$columnasDB) || property_exists($this, $key)) {
+            if ($key === 'dia' && !($value instanceof Dia)) {
+                $this->dia = Dia::find((int)$value); // busca el objeto Dia
+            } else {
+                $this->$key = $value;
             }
         }
     }
-
+}
 
     // Registros - CRUD
     public function guardar() {
